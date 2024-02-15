@@ -1,1 +1,1 @@
-# Shopping-site-React_Vite
+# Shopping-site with React_Vite
