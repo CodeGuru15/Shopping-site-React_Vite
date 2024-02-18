@@ -1,12 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-// const AllProducts = () => {
-//   fetch("https://dummyjson.com/products")
-//     .then((res) => res.json())
-//     .then(console.log);
-// };
-
 const ProductCard = ({ img, title, discount, category }) => {
   return (
     <>
