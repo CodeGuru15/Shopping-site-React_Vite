@@ -1,8 +1,8 @@
-import { BsCartFill } from "react-icons/bs";
 import { IoMdSearch } from "react-icons/io";
 import { useEffect, useState } from "react";
 import SideMenu from "./SideMenu";
 import { Squash as Hamburger } from "hamburger-react";
+import Cart from "./Cart";
 
 const SearchBar = () => {
   return (
@@ -34,7 +34,7 @@ const Nav = () => {
 
   return (
     <>
-      <div className="px-5 z-50 py-2 text-white bg-blue-600 sticky top-0">
+      <div className="sticky top-0 z-50 px-5 py-2 text-white bg-blue-600">
         <div className="flex h-[3rem] justify-between">
           <div className="flex items-center gap-5">
             <div className="text-2xl cursor-pointer">
@@ -46,9 +46,7 @@ const Nav = () => {
           </div>
           <div>{width > 500 && <SearchBar />}</div>
           <div className="flex items-center gap-5 sm:px-2 sm:text-2xl">
-            <div className="text-xl cursor-pointer">
-              <BsCartFill />
-            </div>
+            <Cart />
             <div className="cursor-pointer ">Login</div>
           </div>
         </div>

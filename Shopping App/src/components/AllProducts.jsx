@@ -1,41 +1,36 @@
 import { useContext } from "react";
-
 import ProductContext from "../Context/ProductContext";
-
-const ProductCard = ({ img, title, discount, category }) => {
-  return (
-    <>
-      <div className=" cursor-pointer hover:scale-105 duration-500 border rounded-md flex flex-col w-[150px] sm:w-[200px] bg-white overflow-hidden">
-        <div className="p-1 h-[150px] sm:h-[200px] overflow-hidden">
-          <img className="w-full h-full " src={img} alt={category} />
-        </div>
-        <div className="flex flex-col justify-between flex-grow">
-          <div className="p-1 text-xl font-bold text-white truncate bg-black">
-            {title}
-          </div>
-          <div className="p-1 font-semibold">
-            Discount: <span className="text-red-600 ">{discount}%</span>
-          </div>
-        </div>
-      </div>
-    </>
-  );
-};
+import SingleProduct from "./SingleProduct";
+import CartContext from "../Context/CartContext";
 
 const AllProducts = () => {
   const productData = useContext(ProductContext);
+  const { cartItem, setCartItem } = useContext(CartContext);
 
   return (
     <>
-      <div className="flex flex-wrap gap-1 p-2 bg-yellow-300 sm:gap-3 justify-evenly">
+      <div className="flex flex-wrap gap-1 p-2 sm:gap-3 justify-evenly">
         {productData.map((item) => (
-          <ProductCard
-            title={item.title}
-            discount={item.discountPercentage}
-            category={item.category}
-            img={item.images[0]}
+          <div
             key={item.id}
-          />
+            className="flex flex-col items-center py-2 rounded-md bg-black/5 "
+          >
+            <SingleProduct
+              title={item.title}
+              discount={Math.floor(item.discountPercentage)}
+              category={item.category}
+              img={item.thumbnail}
+              price={item.price}
+              brand={item.brand}
+              rating={item.rating}
+            />
+            <button
+              onClick={() => setCartItem((cartItem) => [...cartItem, item])}
+              className="p-1 w-[70%] text-white bg-blue-500 border rounded-sm hover:text-black hover:bg-green-500"
+            >
+              Add To Cart
+            </button>
+          </div>
         ))}
       </div>
     </>
