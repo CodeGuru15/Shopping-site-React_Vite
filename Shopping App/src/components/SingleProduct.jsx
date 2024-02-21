@@ -18,15 +18,12 @@ const SingleProduct = ({
           <div className="font-semibold truncate">{title}</div>
           <div className="font-semibold">Rating: {rating}</div>
           <div className="">
-            <span className="p-1 text-sm text-white bg-red-600">
+            <span className="p-[6px] text-sm text-white bg-red-600">
               Up to {discount}% off
             </span>
           </div>
           <div className="font-semibold">Price: &#8377; {price}</div>
         </div>
-        {/* <button className="p-1 text-white bg-blue-500 border rounded-sm hover:text-black hover:bg-green-500">
-          Add To Cart
-        </button> */}
       </div>
     </>
   );

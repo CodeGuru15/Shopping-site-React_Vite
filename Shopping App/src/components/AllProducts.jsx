@@ -25,10 +25,13 @@ const AllProducts = () => {
               rating={item.rating}
             />
             <button
-              onClick={() => setCartItem((cartItem) => [...cartItem, item])}
-              className="p-1 w-[70%] text-white bg-blue-500 border rounded-sm hover:text-black hover:bg-green-500"
+              onClick={() => {
+                setCartItem((cartItem) => [...cartItem, item]);
+                // alert("added to cart successfully!");
+              }}
+              className="p-1 w-[70%] text-white bg-blue-500 border rounded-sm hover:text-black"
             >
-              Add To Cart
+              Add
             </button>
           </div>
         ))}

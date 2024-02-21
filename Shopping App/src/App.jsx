@@ -6,12 +6,12 @@ import Home from "./pages/Home";
 
 const App = () => {
   return (
-    <CartContextProvider>
-      <ProductContextProvider>
+    <ProductContextProvider>
+      <CartContextProvider>
         <Home />
         <CartList />
-      </ProductContextProvider>
-    </CartContextProvider>
+      </CartContextProvider>
+    </ProductContextProvider>
   );
 };
 
