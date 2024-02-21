@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { BsCartFill } from "react-icons/bs";
 import CartContext from "../Context/CartContext";
 import { IoIosArrowDown } from "react-icons/io";
@@ -8,7 +8,8 @@ const Cart = () => {
   const { cartItem, setCartItem } = useContext(CartContext);
   const [showCart, setShowCart] = useState(false);
 
-  const [cartAmount, serCartAmount] = useState(0);
+  let CartAmount = 0;
+  cartItem.map((n) => (CartAmount = CartAmount + n.price)); // Calculate Total Cart Amount
 
   return (
     <>
@@ -29,7 +30,8 @@ const Cart = () => {
       </div>
 
       {showCart && (
-        <div className="absolute z-50 right-0 p-2 top-[52px] flex flex-col gap-1 w-[350px] text-sm text-black bg-white">
+        <div className="absolute z-50 right-0 p-2 top-[52px] bg-slate-300 flex flex-col gap-1 text-sm text-black">
+          {/* If cart is empty render this div */}
           {cartItem.length === 0 ? (
             <div className=" text-[15px] text-center text-red-500">
               Cart is empty
@@ -40,20 +42,40 @@ const Cart = () => {
                 return (
                   <div key={index}>
                     <div className="flex gap-2 p-1">
-                      <div className="flex gap-2 basis-2/4">
+                      <div className="flex items-center gap-2 basis-2/4">
                         <span>{index + 1}.</span>
                         <span className="">{item.title}</span>
                       </div>
 
-                      <div className="flex gap-2 basis-1/4">
-                        <button>+</button>
+                      <div className="flex items-center gap-2 basis-1/4">
+                        <button
+                          className="text-xl px-[2px] border border-black "
+                          onClick={
+                            () => setCartItem((cartItem) => [...cartItem, item]) //add item to cart
+                          }
+                        >
+                          +
+                        </button>
                         <span>
-                          Qty. {cartItem.filter((i) => i.id === item.id).length}
+                          {cartItem.filter((i) => i.id === item.id).length}
                         </span>
-                        <button>-</button>
+                        <button
+                          className="text-xl px-[2px] border border-black "
+                          onClick={
+                            () =>
+                              setCartItem(() => [
+                                ...cartItem.filter((i) => i.id != item.id),
+                                ...cartItem
+                                  .filter((i) => i.id === item.id)
+                                  .slice(1),
+                              ]) // remove item from cart
+                          }
+                        >
+                          -
+                        </button>
                       </div>
 
-                      <div className="basis-1/4">
+                      <div className="flex items-center basis-1/4">
                         Rs.{" "}
                         {item.price *
                           cartItem.filter((i) => i.id === item.id).length}
@@ -62,6 +84,9 @@ const Cart = () => {
                   </div>
                 );
               })}
+              <div className="py-2 pr-10 font-bold text-right">
+                Total Amount =Rs. {CartAmount}
+              </div>
             </div>
           )}
         </div>
