@@ -1,22 +1,11 @@
 import { IoMdSearch } from "react-icons/io";
-import { useContext, useEffect, useState } from "react";
-import ProductContext from "../Context/ProductContext";
+import { useContext } from "react";
 import SearchContext from "../Context/SearchContext";
 
 const SearchBar = () => {
-  const productData = useContext(ProductContext);
-  const { searchItem, setSearchItem } = useContext(SearchContext);
-  const [searchTerm, setSearchTerm] = useState("");
+  const { searchTerm, setSearchTerm } = useContext(SearchContext);
 
   const handleSearch = (e) => setSearchTerm(e.target.value);
-
-  useEffect(() => {
-    setSearchItem(() =>
-      productData.filter((user) =>
-        user.title.toLowerCase().includes(searchTerm.toLowerCase())
-      )
-    );
-  }, [searchTerm]);
 
   return (
     <div className="flex h-[3rem] items-center justify-center text-slate-800 sm:w-[50vw]">
@@ -25,7 +14,7 @@ const SearchBar = () => {
         <input
           className="w-[95%] focus:outline-none h-full"
           type="text"
-          placeholder="Search for products"
+          placeholder="Search for products,brand..."
           onChange={handleSearch}
           value={searchTerm}
         />

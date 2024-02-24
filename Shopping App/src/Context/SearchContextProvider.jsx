@@ -2,10 +2,10 @@ import { useState } from "react";
 import SearchContext from "./SearchContext";
 
 const SearchContextProvider = ({ children }) => {
-  const [searchItem, setSearchItem] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
 
   return (
-    <SearchContext.Provider value={{ searchItem, setSearchItem }}>
+    <SearchContext.Provider value={{ searchTerm, setSearchTerm }}>
       {children}
     </SearchContext.Provider>
   );
