@@ -2,15 +2,17 @@ import { useContext } from "react";
 import ProductContext from "../Context/ProductContext";
 import SingleProduct from "./SingleProduct";
 import CartContext from "../Context/CartContext";
+import SearchContext from "../Context/SearchContext";
 
 const AllProducts = () => {
   const productData = useContext(ProductContext);
   const { cartItem, setCartItem } = useContext(CartContext);
+  const { searchItem, setSearchItem } = useContext(SearchContext);
 
   return (
     <>
       <div className="flex flex-wrap gap-1 p-2 sm:gap-3 justify-evenly">
-        {productData.map((item) => (
+        {searchItem.map((item) => (
           <div
             key={item.id}
             className="flex flex-col items-center py-2 rounded-md bg-black/5 "

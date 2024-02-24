@@ -1,23 +1,8 @@
-import { IoMdSearch } from "react-icons/io";
 import { useEffect, useState } from "react";
 import SideMenu from "./SideMenu";
 import { Squash as Hamburger } from "hamburger-react";
 import Cart from "./Cart";
-
-const SearchBar = () => {
-  return (
-    <div className="flex h-[3rem] items-center justify-center text-slate-800 sm:w-[50vw]">
-      <div className="flex items-center w-full h-[80%] gap-2 px-2 bg-white rounded-sm">
-        <IoMdSearch />
-        <input
-          className="w-[95%] focus:outline-none h-full"
-          type="text"
-          placeholder="Search for products"
-        />
-      </div>
-    </div>
-  );
-};
+import SearchBar from "./SearchBar";
 
 const Nav = () => {
   const [width, setWidth] = useState(window.innerWidth);

@@ -7,7 +7,7 @@ const ProductContextProvider = ({ children }) => {
 
   const url = "https://dummyjson.com/products";
 
-  const fetchData = () => {
+  const fetchData = async () => {
     return axios.get(url).then((res) => setProductData(res.data.products));
   };
 
