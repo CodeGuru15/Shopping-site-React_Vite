@@ -85,7 +85,7 @@ const Cart = () => {
                 );
               })}
               <div className="py-2 pr-10 font-bold text-right">
-                Total Amount =Rs. {CartAmount}
+                Subtotal = Rs. {CartAmount}
               </div>
             </div>
           )}
