@@ -9,7 +9,7 @@ const SingleProduct = ({
 }) => {
   return (
     <>
-      <div className="px-3 py-1 gap-1 flex flex-col w-[150px] sm:w-[200px] overflow-hidden">
+      <div className="px-3 py-1 gap-1 flex flex-col w-[150px] sm:w-[250px] overflow-hidden">
         <div className="h-[100px] sm:h-[150px] overflow-hidden">
           <img className="w-full h-full " src={img} alt={category} />
         </div>
