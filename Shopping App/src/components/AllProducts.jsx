@@ -9,18 +9,22 @@ const AllProducts = () => {
   const { cartItem, setCartItem } = useContext(CartContext);
   const { searchTerm, setSearchTerm } = useContext(SearchContext);
 
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage] = useState(10); // Adjust as required
+
+  const totalPages = Math.ceil(productData.length / itemsPerPage); // Calculation of total pages
+
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const currentPageData = productData.slice(startIndex, endIndex);
+
   const searchKeys = ["title", "brand"]; //  keywords for searching
 
-  const pageLimit = 10;
-  const url = "https://dummyjson.com/products";
-
-  const Page = ({ num }) => {
+  const PageBtn = ({ num }) => {
     return (
       <button
-        className="p-1"
-        onClick={() => {
-          fetchData(`${url}/?limit=${pageLimit}&skip=${(num - 1) * pageLimit}`);
-        }}
+        onClick={() => setCurrentPage(num)}
+        className=" hover:bg-blue-500 hover:text-white border text-2xl text-blue-500 size-10 rounded-full border-blue-500"
       >
         {num}
       </button>
@@ -48,7 +52,7 @@ const AllProducts = () => {
             <h1>No Such Product Found</h1>
           </div>
         ) : (
-          productData
+          currentPageData
             .filter((product) =>
               searchKeys.some((key) =>
                 product[key].toLowerCase().includes(searchTerm.toLowerCase())
@@ -57,7 +61,7 @@ const AllProducts = () => {
             .map((item) => (
               <div
                 key={item.id}
-                className="flex flex-col items-center py-2 rounded-md bg-black/5 "
+                className="flex flex-col hover:scale-105 duration-500 items-center py-2 rounded-m shadow-lg"
               >
                 <SingleProduct
                   title={item.title}
@@ -81,13 +85,9 @@ const AllProducts = () => {
             ))
         )}
       </div>
-      <div className="flex justify-center gap-5">
-        {[...Array(10)].map((x, i) => {
-          return (
-            <>
-              <Page num={i + 1} />
-            </>
-          );
+      <div className=" flex justify-center gap-2 p-5">
+        {[...Array(totalPages)].map((_, i) => {
+          return <PageBtn key={i} num={i + 1} />;
         })}
       </div>
     </>

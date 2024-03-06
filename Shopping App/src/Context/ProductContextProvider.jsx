@@ -21,7 +21,7 @@ const ProductContextProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    (() => fetchData("https://dummyjson.com/products/?limit=10"))();
+    (() => fetchData("https://dummyjson.com/products/?limit=0"))();
   }, []);
 
   return (
