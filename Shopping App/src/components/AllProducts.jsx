@@ -10,9 +10,10 @@ const AllProducts = () => {
   const { searchTerm, setSearchTerm } = useContext(SearchContext);
 
   const [currentPage, setCurrentPage] = useState(1);
+
   const [itemsPerPage] = useState(10); // Adjust as required
 
-  const totalPages = Math.ceil(productData.length / itemsPerPage); // Calculation of total pages
+  const totalPages = Math.ceil(productData.length / itemsPerPage); // Calculation of total
 
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
@@ -20,11 +21,18 @@ const AllProducts = () => {
 
   const searchKeys = ["title", "brand"]; //  keywords for searching
 
+  const pageStyle =
+    "text-2xl text-blue-500 border border-blue-500 rounded-full hover:bg-blue-500 hover:text-white size-10";
+  const activePageStyle =
+    "text-2xl text-white border border-blue-500 rounded-full hover:bg-blue-500 hover:text-white size-10 bg-blue-500";
+
   const PageBtn = ({ num }) => {
     return (
       <button
-        onClick={() => setCurrentPage(num)}
-        className=" hover:bg-blue-500 hover:text-white border text-2xl text-blue-500 size-10 rounded-full border-blue-500"
+        onClick={() => {
+          setCurrentPage(num);
+        }}
+        className={num === currentPage ? activePageStyle : pageStyle}
       >
         {num}
       </button>
@@ -61,7 +69,7 @@ const AllProducts = () => {
             .map((item) => (
               <div
                 key={item.id}
-                className="flex flex-col hover:scale-105 duration-500 items-center py-2 rounded-m shadow-lg"
+                className="flex flex-col items-center py-2 duration-500 shadow-lg hover:scale-105 rounded-m"
               >
                 <SingleProduct
                   title={item.title}
@@ -85,7 +93,7 @@ const AllProducts = () => {
             ))
         )}
       </div>
-      <div className=" flex justify-center gap-2 p-5">
+      <div className="flex flex-wrap justify-center gap-2 p-5">
         {[...Array(totalPages)].map((_, i) => {
           return <PageBtn key={i} num={i + 1} />;
         })}

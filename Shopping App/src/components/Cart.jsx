@@ -30,10 +30,10 @@ const Cart = () => {
       </div>
 
       {showCart && (
-        <div className="absolute z-50 right-0 p-2 top-[52px] bg-slate-300 flex flex-col gap-1 text-sm text-black">
+        <div className="absolute z-50 right-0 p-2 top-[52px] bg-white flex flex-col gap-1 text-sm text-black">
           {/* If cart is empty render this div */}
           {cartItem.length === 0 ? (
-            <div className=" text-[15px] text-center text-red-500">
+            <div className="p-5 text-[15px] text-center text-red-500">
               Cart is empty
             </div>
           ) : (
@@ -49,7 +49,7 @@ const Cart = () => {
 
                       <div className="flex items-center gap-2 basis-1/4">
                         <button
-                          className="text-xl px-[2px] border border-black "
+                          className="text-xl px-[2px]"
                           onClick={
                             () => setCartItem((cartItem) => [...cartItem, item]) //add item to cart
                           }
@@ -60,7 +60,7 @@ const Cart = () => {
                           {cartItem.filter((i) => i.id === item.id).length}
                         </span>
                         <button
-                          className="text-xl px-[2px] border border-black "
+                          className="text-xl px-[2px]"
                           onClick={
                             () =>
                               setCartItem(() => [
