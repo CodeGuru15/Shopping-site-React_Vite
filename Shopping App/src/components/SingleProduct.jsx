@@ -18,7 +18,7 @@ const SingleProduct = ({
           <div className="font-semibold truncate">{title}</div>
           <div className="font-semibold">Rating: {rating}</div>
           <div className="">
-            <span className="font-bold text-sm text-red-600 animate-pulse">
+            <span className="text-sm font-bold text-red-600 animate-pulse">
               Up to {discount}% off
             </span>
           </div>

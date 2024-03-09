@@ -1,8 +1,12 @@
 import { useContext, useState } from "react";
 import { BsCartFill } from "react-icons/bs";
 import CartContext from "../Context/CartContext";
-import { IoIosArrowDown } from "react-icons/io";
-import { IoIosArrowUp } from "react-icons/io";
+import {
+  IoIosArrowDown,
+  IoIosArrowUp,
+  IoIosAddCircleOutline,
+} from "react-icons/io";
+import { MdOutlineDeleteOutline } from "react-icons/md";
 
 const Cart = () => {
   const { cartItem, setCartItem } = useContext(CartContext);
@@ -30,7 +34,7 @@ const Cart = () => {
       </div>
 
       {showCart && (
-        <div className="absolute z-50 right-0 p-2 top-[52px] bg-white flex flex-col gap-1 text-sm text-black">
+        <div className="absolute shadow-lg z-50 max-h-[400px] overflow-y-scroll right-0 p-2 top-[52px] bg-white flex flex-col gap-1 text-sm text-black">
           {/* If cart is empty render this div */}
           {cartItem.length === 0 ? (
             <div className="p-5 text-[15px] text-center text-red-500">
@@ -40,11 +44,11 @@ const Cart = () => {
             <div>
               {[...new Set(cartItem)].map((item, index) => {
                 return (
-                  <div key={index}>
+                  <div key={index} className="">
                     <div className="flex gap-2 p-1">
                       <div className="flex items-center gap-2 basis-2/4">
-                        <span>{index + 1}.</span>
-                        <span className="">{item.title}</span>
+                        {/* <span>{index + 1}.</span> */}
+                        <span className="font-semibold">{item.title}</span>
                       </div>
 
                       <div className="flex items-center gap-2 basis-1/4">
@@ -54,7 +58,7 @@ const Cart = () => {
                             () => setCartItem((cartItem) => [...cartItem, item]) //add item to cart
                           }
                         >
-                          +
+                          <IoIosAddCircleOutline />
                         </button>
                         <span>
                           {cartItem.filter((i) => i.id === item.id).length}
@@ -71,7 +75,7 @@ const Cart = () => {
                               ]) // remove item from cart
                           }
                         >
-                          -
+                          <MdOutlineDeleteOutline />
                         </button>
                       </div>
 
@@ -84,7 +88,7 @@ const Cart = () => {
                   </div>
                 );
               })}
-              <div className="py-2 pr-10 font-bold text-right">
+              <div className="py-2 pr-10 text-xl font-bold text-right">
                 Subtotal = Rs. {CartAmount}
               </div>
             </div>

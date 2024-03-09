@@ -6,6 +6,9 @@ const ProductContextProvider = ({ children }) => {
   const [productData, setProductData] = useState([]);
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [apiUrl, setApiUrl] = useState(
+    "https://dummyjson.com/products/?limit=0"
+  );
 
   const fetchData = async (url) => {
     try {
@@ -21,11 +24,11 @@ const ProductContextProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    (() => fetchData("https://dummyjson.com/products/?limit=0"))();
-  }, []);
+    (() => fetchData(apiUrl))();
+  }, [apiUrl]);
 
   return (
-    <ProductContext.Provider value={{ productData, error, loading, fetchData }}>
+    <ProductContext.Provider value={{ productData, error, loading, setApiUrl }}>
       {children}
     </ProductContext.Provider>
   );
